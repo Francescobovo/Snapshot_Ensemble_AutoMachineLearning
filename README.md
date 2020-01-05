@@ -30,12 +30,12 @@ model.fit(trainX, trainY, callbacks=snapshot.get_callbacks(model_prefix=model_pr
 
 To train WRN or DenseNet models on FASHION MNIST (or use pre trained models):
 
-1. Run the `train_fashion_mnist.py` script to train the WRN-16-4 model on FASHION MNIST dataset (not required since weights are provided)
-2. Run the `predict_fashion_mnist.py` script to make an ensemble prediction.
+1. Run the `train_*.py` script to train the WRN-16-4 model on FASHION MNIST or CIFAR-10/CIFAR-100 dataset (not required since weights are provided)
+2. Run the `predict_*.py` script to make an ensemble prediction.
 
 According to the original paper, models trained on more complex datasets such as CIFAR 100 and Tiny ImageNet obtaines a greater boost from the ensemble model.
 
-In the `predict_fashion_mnist.py` script is possible to compute the Classifier Output Difference (COD) dendrogram. COD is a metric that measures the number of observations on which a pair of classifiers yields a different prediction. A high value of COD indicates that two classifiers yield different predictions, hence they would be well suited to combine in an ensemble. This method of ensemble selection is well explained on the project paper developed.
+In the `predict_*.py` script is possible to compute the Classifier Output Difference (COD) dendrogram. COD is a metric that measures the number of observations on which a pair of classifiers yields a different prediction. A high value of COD indicates that two classifiers yield different predictions, hence they would be well suited to combine in an ensemble. This method of ensemble selection is well explained on the project paper developed.
 
 ## Parameters
 Some parameters for WRN models from the original paper:
@@ -52,7 +52,7 @@ Some parameters for DenseNet models from the original paper:
 - dn_depth = 40 (DenseNet-40-12) or 100 (DenseNet-100-24)
 - dn_growth_rate = 12 (DenseNet-40-12) or 24 (DenseNet-100-24)
 
-### train_fashion_mnist.py
+### train_*.py
 ```
 --M              : Number of snapshots that will be taken. Optimal range is in between 4 - 8. Default is 5
 --nb_epoch       : Number of epochs to train the network. Default is 200
@@ -67,7 +67,7 @@ Some parameters for DenseNet models from the original paper:
 --dn_growth_rate : Growth rate of DenseNet. Default is 12.
 ```
 
-### predict_fashion_mnist.py
+### predict_*.py
 ```
 --optimize       : Flag to optimize the ensemble weights. 
                    Default is 0 (Predict using optimized weights).
@@ -84,7 +84,7 @@ Some parameters for DenseNet models from the original paper:
 --dn_depth       : Depth of DenseNet. Default is 40.
 --dn_growth_rate : Growth rate of DenseNet. Default is 12.
 
---cod            : Set to 1 to compute Classifier Output Difference dendrogram. Default is 0.
+--cod            : Set to 1 to compute Classifier Output Difference dendrogram. Default is 0. (Implemented for Fashion Mnist dataset)
 ```
 
 # Requirements
